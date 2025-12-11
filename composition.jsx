@@ -14,7 +14,7 @@ const COLORS = {
   highlight: "#ffd54f",
   circleFill: "#ff6b6b"
 };
-const CELL = 106;
+const CELL = 130;
 const GAP = 8;
 const HEADER_BORDER = 4;
 const CELL_BORDER = 3;
@@ -44,7 +44,7 @@ const Header = () => {
             background: "#ffffff",
             boxShadow: "0 4px 10px rgba(0,0,0,0.06)",
             border: `${HEADER_BORDER}px solid ${COLORS.gridStroke}`,
-            fontSize: 56,
+            fontSize: 72,
             fontWeight: 800,
             color: COLORS.headerText,
             fontFamily: "Arial, Helvetica, sans-serif"
@@ -72,7 +72,7 @@ const Header = () => {
 const Cell = ({ value, highlighted, circleProgress, isHeader }) => {
   const isFree = typeof value === "string" && value.toLowerCase().includes("free");
   const borderWidth = isHeader ? HEADER_BORDER : CELL_BORDER;
-  const fontSize = isHeader ? 56 : 34;
+  const fontSize = isHeader ? 72 : 44;
   const fontWeight = isHeader ? 900 : 700;
   const borderRadius = BORDER_RADIUS;
   return /* @__PURE__ */ jsxDEV(

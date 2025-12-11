@@ -197,40 +197,33 @@ const BingoCardClip = ({ match = {} }) => {
         transform: `scale(${scale})`,
         opacity
       },
-      children: /* @__PURE__ */ jsxDEV("div", { style: { display: "flex", flexDirection: "column", alignItems: "center" }, children: [
-        /* @__PURE__ */ jsxDEV("div", { style: { display: "grid", gridTemplateColumns: `repeat(5, ${CELL}px)`, gap: GAP }, children: gridRows.map(
-          (row, rIdx) => row.map((cell, cIdx) => {
-            const highlighted = Array.isArray(highlights) && highlights[rIdx] && highlights[rIdx][cIdx];
-            const progress = cellProgress[`${rIdx}-${cIdx}`] ?? 0;
-            const isHeader = rIdx === 0 && Array.isArray(gridRows[0]) && String(gridRows[0][0]).length === 1 && gridRows[0].length === 5;
-            return /* @__PURE__ */ jsxDEV(
-              Cell,
-              {
-                value: cell,
-                highlighted,
-                circleProgress: progress,
-                isHeader
-              },
-              `${rIdx}-${cIdx}`,
-              false,
-              {
-                fileName: "<stdin>",
-                lineNumber: 211,
-                columnNumber: 19
-              }
-            );
-          })
-        ) }, void 0, false, {
-          fileName: "<stdin>",
-          lineNumber: 197,
-          columnNumber: 11
-        }),
-        /* @__PURE__ */ jsxDEV("div", { style: { marginTop: 18, color: "#666", fontSize: 14 }, children: "Bingo card" }, void 0, false, {
-          fileName: "<stdin>",
-          lineNumber: 224,
-          columnNumber: 11
+      children: /* @__PURE__ */ jsxDEV("div", { style: { display: "flex", flexDirection: "column", alignItems: "center" }, children: /* @__PURE__ */ jsxDEV("div", { style: { display: "grid", gridTemplateColumns: `repeat(5, ${CELL}px)`, gap: GAP }, children: gridRows.map(
+        (row, rIdx) => row.map((cell, cIdx) => {
+          const highlighted = Array.isArray(highlights) && highlights[rIdx] && highlights[rIdx][cIdx];
+          const progress = cellProgress[`${rIdx}-${cIdx}`] ?? 0;
+          const isHeader = rIdx === 0 && Array.isArray(gridRows[0]) && String(gridRows[0][0]).length === 1 && gridRows[0].length === 5;
+          return /* @__PURE__ */ jsxDEV(
+            Cell,
+            {
+              value: cell,
+              highlighted,
+              circleProgress: progress,
+              isHeader
+            },
+            `${rIdx}-${cIdx}`,
+            false,
+            {
+              fileName: "<stdin>",
+              lineNumber: 211,
+              columnNumber: 19
+            }
+          );
         })
-      ] }, void 0, true, {
+      ) }, void 0, false, {
+        fileName: "<stdin>",
+        lineNumber: 197,
+        columnNumber: 11
+      }) }, void 0, false, {
         fileName: "<stdin>",
         lineNumber: 195,
         columnNumber: 9

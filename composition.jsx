@@ -14,6 +14,11 @@ const COLORS = {
   highlight: "#ffd54f",
   circleFill: "#ff6b6b"
 };
+const CELL = 106;
+const GAP = 8;
+const HEADER_BORDER = 4;
+const CELL_BORDER = 3;
+const BORDER_RADIUS = 12;
 const Header = () => {
   const letters = ["B", "I", "N", "G", "O"];
   return /* @__PURE__ */ jsxDEV(
@@ -21,7 +26,7 @@ const Header = () => {
     {
       style: {
         display: "flex",
-        gap: 10,
+        gap: GAP,
         justifyContent: "center",
         alignItems: "center",
         marginBottom: 12
@@ -30,16 +35,16 @@ const Header = () => {
         "div",
         {
           style: {
-            width: 92,
-            height: 92,
-            borderRadius: 12,
+            width: CELL,
+            height: CELL,
+            borderRadius: BORDER_RADIUS,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             background: "#ffffff",
             boxShadow: "0 4px 10px rgba(0,0,0,0.06)",
-            border: `3px solid ${COLORS.gridStroke}`,
-            fontSize: 48,
+            border: `${HEADER_BORDER}px solid ${COLORS.gridStroke}`,
+            fontSize: 56,
             fontWeight: 800,
             color: COLORS.headerText,
             fontFamily: "Arial, Helvetica, sans-serif"
@@ -50,7 +55,7 @@ const Header = () => {
         false,
         {
           fileName: "<stdin>",
-          lineNumber: 38,
+          lineNumber: 45,
           columnNumber: 9
         }
       ))
@@ -59,23 +64,23 @@ const Header = () => {
     false,
     {
       fileName: "<stdin>",
-      lineNumber: 28,
+      lineNumber: 35,
       columnNumber: 5
     }
   );
 };
 const Cell = ({ value, highlighted, circleProgress, isHeader }) => {
   const isFree = typeof value === "string" && value.toLowerCase().includes("free");
-  const borderWidth = isHeader ? 4 : 3;
-  const fontSize = isHeader ? 48 : 28;
+  const borderWidth = isHeader ? HEADER_BORDER : CELL_BORDER;
+  const fontSize = isHeader ? 56 : 34;
   const fontWeight = isHeader ? 900 : 700;
-  const borderRadius = isHeader ? 12 : 12;
+  const borderRadius = BORDER_RADIUS;
   return /* @__PURE__ */ jsxDEV(
     "div",
     {
       style: {
-        width: 92,
-        height: 92,
+        width: CELL,
+        height: CELL,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -96,8 +101,8 @@ const Cell = ({ value, highlighted, circleProgress, isHeader }) => {
           {
             style: {
               position: "absolute",
-              width: 74,
-              height: 74,
+              width: Math.round(CELL * 0.7),
+              height: Math.round(CELL * 0.7),
               borderRadius: 999,
               background: COLORS.circleFill,
               opacity: 0.95,
@@ -110,7 +115,7 @@ const Cell = ({ value, highlighted, circleProgress, isHeader }) => {
           false,
           {
             fileName: "<stdin>",
-            lineNumber: 96,
+            lineNumber: 103,
             columnNumber: 9
           }
         ),
@@ -130,13 +135,13 @@ const Cell = ({ value, highlighted, circleProgress, isHeader }) => {
           false,
           {
             fileName: "<stdin>",
-            lineNumber: 112,
+            lineNumber: 119,
             columnNumber: 9
           }
         ),
         /* @__PURE__ */ jsxDEV("div", { style: { zIndex: 1 }, children: isFree ? "FREE" : value }, void 0, false, {
           fileName: "<stdin>",
-          lineNumber: 123,
+          lineNumber: 130,
           columnNumber: 7
         })
       ]
@@ -145,7 +150,7 @@ const Cell = ({ value, highlighted, circleProgress, isHeader }) => {
     true,
     {
       fileName: "<stdin>",
-      lineNumber: 75,
+      lineNumber: 82,
       columnNumber: 5
     }
   );
@@ -178,11 +183,13 @@ const BingoCardClip = ({ match = {} }) => {
   });
   const lettersRow = ["B", "I", "N", "G", "O"];
   const gridRows = card.length === 5 ? [lettersRow, ...card] : card;
+  const boardWidth = CELL * 5 + GAP * 4;
   return /* @__PURE__ */ jsxDEV(AbsoluteFill, { style: { background: COLORS.bg, justifyContent: "center", alignItems: "center" }, children: /* @__PURE__ */ jsxDEV(
     "div",
     {
       style: {
-        width: 620,
+        width: boardWidth + 56,
+        // add padding comparable to earlier padding
         padding: 28,
         borderRadius: 20,
         background: "#ffffff",
@@ -191,7 +198,7 @@ const BingoCardClip = ({ match = {} }) => {
         opacity
       },
       children: /* @__PURE__ */ jsxDEV("div", { style: { display: "flex", flexDirection: "column", alignItems: "center" }, children: [
-        /* @__PURE__ */ jsxDEV("div", { style: { display: "grid", gridTemplateColumns: "repeat(5, 92px)", gap: 8 }, children: gridRows.map(
+        /* @__PURE__ */ jsxDEV("div", { style: { display: "grid", gridTemplateColumns: `repeat(5, ${CELL}px)`, gap: GAP }, children: gridRows.map(
           (row, rIdx) => row.map((cell, cIdx) => {
             const highlighted = Array.isArray(highlights) && highlights[rIdx] && highlights[rIdx][cIdx];
             const progress = cellProgress[`${rIdx}-${cIdx}`] ?? 0;
@@ -208,24 +215,24 @@ const BingoCardClip = ({ match = {} }) => {
               false,
               {
                 fileName: "<stdin>",
-                lineNumber: 201,
+                lineNumber: 211,
                 columnNumber: 19
               }
             );
           })
         ) }, void 0, false, {
           fileName: "<stdin>",
-          lineNumber: 187,
+          lineNumber: 197,
           columnNumber: 11
         }),
         /* @__PURE__ */ jsxDEV("div", { style: { marginTop: 18, color: "#666", fontSize: 14 }, children: "Bingo card" }, void 0, false, {
           fileName: "<stdin>",
-          lineNumber: 214,
+          lineNumber: 224,
           columnNumber: 11
         })
       ] }, void 0, true, {
         fileName: "<stdin>",
-        lineNumber: 185,
+        lineNumber: 195,
         columnNumber: 9
       })
     },
@@ -233,12 +240,12 @@ const BingoCardClip = ({ match = {} }) => {
     false,
     {
       fileName: "<stdin>",
-      lineNumber: 174,
+      lineNumber: 184,
       columnNumber: 7
     }
   ) }, void 0, false, {
     fileName: "<stdin>",
-    lineNumber: 173,
+    lineNumber: 183,
     columnNumber: 5
   });
 };
